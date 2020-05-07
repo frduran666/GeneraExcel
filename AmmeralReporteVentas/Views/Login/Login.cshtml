@@ -1,0 +1,151 @@
+﻿@{
+    /**/
+
+    string parametroUpdate = AmmeralReporteVentas.UTIL.ActualizacionJS.obtenerParametro();
+    ViewBag.Title = "Acceso";
+    Layout = null;
+
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Acceso - Reporte Ventas</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="~/Content/assets/css/default/app.min.css" rel="stylesheet">
+    <!-- ================== END BASE CSS STYLE ================== -->
+    
+</head>
+<body class="pace-top  pace-done">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+    <!-- begin #page-loader -->
+    <div id="page-loader" class="fade show d-none"><span class="spinner"></span></div>
+    <!-- end #page-loader -->
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade show">
+        <!-- begin login -->
+        <div class="login login-with-news-feed">
+            <!-- begin news-feed -->
+            <div class="news-feed">
+                <div class="news-image" style="background-image: url(/Content/assets/img/user/login-left-content.jpg)"></div>
+                <div class="news-caption">
+                    <h4 class="caption-title"><b>Reporte de Ventas</b></h4>
+                    <p>
+                        Plataforma de creacion de reportes de ventas
+                    </p>
+                </div>
+            </div>
+            <!-- end news-feed -->
+            <!-- begin right-content -->
+            <div class="right-content">
+                <!-- begin login-header -->
+                <div class="login-header">
+                    <div class="brand">
+                        <span class="logo"></span> <b>Reporte de Ventas </b>
+                        <small>Login de usuario</small>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sign-in-alt"></i>
+                    </div>
+                </div>
+                <!-- end login-header -->
+                <!-- begin login-content -->
+                <div class="login-content">
+                    @*<form action="@Url.Action("Login" , "Login" )" method="post" class="margin-bottom-0">*@
+                    <div class="form-group m-b-15">
+                        <input type="text" class="form-control form-control-lg" id="Nombre" name="Nombre" placeholder="Nombre Usuario" required>
+                    </div>
+                    <div class="form-group m-b-15">
+                        <input type="password" class="form-control form-control-lg" id="Contrasena" name="Contrasena" placeholder="Contraseña" required>
+                    </div>
+                    @*<div class="login-buttons">
+                            <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+                        </div>*@
+                    <div class="login-buttons">
+                        <input type="button" id="Login" class="btn btn-success btn-block btn-lg" value="Iniciar Sesion" />
+                    </div>
+                    <hr>
+                    <p class="text-center text-black mb-0">
+                        &copy; Disofi
+                    </p>
+                    @*</form>*@
+                </div>
+                <!-- end login-content -->
+            </div>
+            <!-- end right-container -->
+        </div>
+        <!-- end login -->
+    </div>
+    <!-- end page container -->
+
+    <a id="aModalEmpresas" style="display: none" href="#modalEmpresas" class="btn btn-sm btn-success" data-toggle="modal">Agregar Direccion Despacho</a>
+    <div class="modal fade" id="modalEmpresas">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Seleccion de Empresa</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive form-inline">
+                        <table class="table table-profile">
+                            <tbody>
+                                <tr class="highlight">
+                                    <td>Empresa</td>
+                                    <td>
+                                        <select id="ddlEmpresas" class="form-control"></select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a id="modalEmpresasAgregar" href="javascript:;" class="btn btn-success">Seleccionar Empresa</a>
+                    <a id="modalEmpresasCerrar" href="javascript:;" class="btn btn-white" data-dismiss="modal">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="aModalErrorLogin" style="display: none" href="#modalErrorLogin" class="btn btn-sm btn-success" data-toggle="modal">Agregar Direccion Despacho</a>
+    <div class="modal fade" id="modalErrorLogin">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Error de Acceso</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 class="" style="color: red" id="modalErrorLoginMensaje"></h4>
+                </div>
+                <div class="modal-footer">
+                    <a id="aModalErrorLogin" href="javascript:;" class="btn btn-white" data-dismiss="modal">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ModalSeleccionarBD" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <select id="BaseDatos">
+            <option value="value">text</option>
+        </select>
+        <button>Seleccionar</button>
+    </div>
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="~/Content/assets/js/app.min.js?@parametroUpdate"></script>
+    <script src="~/Content/assets/js/theme/default.min.js?@parametroUpdate"></script>
+    <script src="~/WebJs/Login/Login.js?@parametroUpdate"></script>
+    <!-- ================== END BASE JS ================== -->
+
+
+</body>
+</html>
